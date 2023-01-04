@@ -1,0 +1,28 @@
+
+version: 2
+
+models:
+  - name: revenue_cohort
+    description: "Information about the revenue by cohort"
+
+  - name: revenue_sumry
+    description: "Revenue summary indicators"
+
+  - name: stmt_dq_accts
+    description: "DQ information by accounts"
+
+  - name: stmt_dq_vtg_accts
+    description: "DQ information by vintage"
+
+  - name: vintage_sumry
+    description: "General information by vintage"
+
+sources:
+  - name: ua
+    description: "ua schema in Redshift Database"
+    database: powerup
+    schema: ua
+    tables:
+      - name: wen_stmt_acct_table_v3
+        identitifer: stmt_acct
+        description: "Table in Redshift that contains account statement information from Indra (Processed by Wen Bruce)."

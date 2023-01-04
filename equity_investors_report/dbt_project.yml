@@ -1,0 +1,31 @@
+
+name: 'equity_investors_report'
+version: '1.0.0'
+config-version: 2
+
+profile: 'stori'
+
+model-paths: ["models"]
+analysis-paths: ["analyses"]
+test-paths: ["tests"]
+seed-paths: ["seeds"]
+macro-paths: ["macros"]
+snapshot-paths: ["snapshots"]
+
+target-path: "target"  
+clean-targets:      
+  - "target"
+  - "dbt_packages"
+
+
+models:
+  equity_investors_report:
+    features:
+      +materialized: table
+      +schema: da_stage
+    portfolio_report:
+      +materialized: table
+      +schema: portfolio_report
+
+on-run-end:
+  - "DROP TABLE IF EXISTS da_stage.all_balances, da_stage.chargeoff_dtls"
