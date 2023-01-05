@@ -32,7 +32,7 @@ def get_portfolio_data(sql_queries):
 def write_tables_to_excel(sql_queries,sheet_name='sheet1',mode_default='w'):
     dict_df = get_portfolio_data(sql_queries)
     startR,startC = 1,1
-    file_name = './portfolio_summary_' + str(datetime.date.today()) + '.xlsx'
+    file_name = './datapack_spreadsheets/portfolio_summary_' + str(datetime.date.today()) + '.xlsx'
     with pd.ExcelWriter(file_name,mode=mode_default,engine="openpyxl") as writer:
         for k,v in dict_df.items():
             v.to_excel(writer, sheet_name=sheet_name,startrow=startR,startcol=startC,index_label=k)
@@ -44,3 +44,8 @@ if __name__ == "__main__":
     sql_files = list(filter(lambda f: f.endswith("summary.sql"), all_files))
     
     write_tables_to_excel(sql_queries=sql_files,sheet_name='portfolio_summary')
+
+    if os.path.exists('./datapack_spreadsheets/portfolio_summary_' + str(datetime.date.today()) + '.xlsx'):
+        print('<< Portfolio summary spreadsheet successfully created >>')
+    else:
+        print('<< Error creating portfolio summary spreadsheet >>')

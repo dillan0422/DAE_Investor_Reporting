@@ -35,6 +35,7 @@ GROUP BY 1,2,3
 )
 
 SELECT cycle_end_dt
+       , stmt_num 
        , vintage
        , SUM(os_bal) AS os_bal 
        , SUM(dq1_30_prncp_bal) AS dq1_30_prncp_bal 
@@ -44,5 +45,5 @@ SELECT cycle_end_dt
        , SUM(co_cnt) AS co_cnt
        , SUM(co_amt) AS co_amt 
 FROM dq_all_acct_info 
-GROUP BY 1,2
+GROUP BY 1,2,3
 ORDER BY cycle_end_dt;
