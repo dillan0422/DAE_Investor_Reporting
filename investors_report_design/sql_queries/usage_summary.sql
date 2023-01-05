@@ -22,7 +22,7 @@ SELECT a.cycle_end_dt
        , b.avg_dau
        , c.mau
        , b.num_of_dau
-       , c.active_acct_cnt   
+       , c.active_acct_cnt AS num_of_mau   
 FROM (SELECT cycle_end_dt
 		       /* Cards */
 		       , SUM(actived_acct_cnt) AS actived_acct_cnt 
